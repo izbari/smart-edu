@@ -1,10 +1,21 @@
 //import section
 const express = require("express");
 const ejs = require("ejs");
+const mongoose = require("mongoose");
 
 const pageRoute = require("./routes/pageRoute");
-
+const courseRoute = require("./routes/courseRoute");
 const app = express();
+//CONNECT DB
+mongoose
+  .connect("mongodb://localhost/smartedu-db", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+   
+  })
+  .then(() => {
+    console.log("DB connected successfully!");
+  });
 
 //template engine
 app.set("view engine", "ejs");
@@ -15,6 +26,9 @@ app.use(express.static("public"));
 app.get("/about", pageRoute);
 
 app.get("/login", pageRoute);
+app.get("/courses", courseRoute);
+app.get("/dashboard", pageRoute);
+app.get("/register", pageRoute);
 
 app.get("/", pageRoute);
 

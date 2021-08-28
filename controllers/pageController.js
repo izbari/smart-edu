@@ -18,3 +18,18 @@ exports.getAboutPage = (req, res) => {
         page_name:"login"
     })
   }
+  exports.getCoursesPage = (req, res) => {
+    res.status(200).render("courses",{
+        page_name:"courses"
+    })
+  }
+  exports.getDashboardPage = (req, res) => {
+    res.status(200).render("dashboard",{
+        page_name:"dashboard"
+    })
+  }
+   exports.getRegisterPage = (req, res) => {
+    res.status(200).render("register",{
+        page_name:"register"
+    })
+  }
