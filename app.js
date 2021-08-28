@@ -22,11 +22,16 @@ app.set("view engine", "ejs");
 
 // middlewares
 app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({extend: true}));
+
+
+
 
 app.get("/about", pageRoute);
 
 app.get("/login", pageRoute);
-app.get("/courses", courseRoute);
+app.use("/courses", courseRoute);
 app.get("/dashboard", pageRoute);
 app.get("/register", pageRoute);
 
