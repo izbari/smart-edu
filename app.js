@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 
 const pageRoute = require("./routes/pageRoute");
 const courseRoute = require("./routes/courseRoute");
+const categoryRoute = require("./routes/categoryRoute");
+
 const app = express();
 //CONNECT DB
 mongoose
@@ -29,13 +31,13 @@ app.use(express.urlencoded({extend: true}));
 
 
 app.get("/about", pageRoute);
-
 app.get("/login", pageRoute);
 app.use("/courses", courseRoute);
 app.get("/dashboard", pageRoute);
 app.get("/register", pageRoute);
 
 app.get("/", pageRoute);
+app.use("/categories", categoryRoute);
 
 app.get("/index", (req, res) => {
   res.status(200).render("index", {
