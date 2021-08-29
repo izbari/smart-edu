@@ -3,6 +3,7 @@ const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 
+
 const pageRoute = require("./routes/pageRoute");
 const courseRoute = require("./routes/courseRoute");
 const categoryRoute = require("./routes/categoryRoute");
@@ -28,27 +29,10 @@ app.use(express.json());
 app.use(express.urlencoded({extend: true}));
 
 
-
-
-app.get("/about", pageRoute);
-app.get("/login", pageRoute); 
-app.use("/courses", courseRoute);
-app.get("/dashboard", pageRoute);
-app.get("/register", pageRoute);
-
-app.get("/", pageRoute);
+app.use("/", pageRoute);
+app.use("/courses",courseRoute)
 app.use("/categories", categoryRoute);
-app.use("/users", userRoute);
-
-app.get("/index", (req, res) => {
-  res.status(200).render("index", {
-    page_name: "index",
-  });
-});
-
-app.get("/contact", (req, res) => {
-  res.status(200).render("contact", { page_name: "contact" });
-});
+app.use("/users", userRoute); 
 
 const port = 3000;
 

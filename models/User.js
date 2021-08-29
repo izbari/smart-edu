@@ -4,16 +4,19 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     name: { type: String, required: true },
-    email: {unique: true, required: true,type: String,},
+    email: {type: String, required: true,unique: true},
     password : {type: String, required: true},
     
 });
 UserSchema.pre('save', function(next){
     const user = this;
+    console.log("model userı ",user)
     bcrypt.hash(user.password,10,(error,hash)=>{
         user.password = hash;
         next();
-    })
+    }) 
+            
+
 });
 
 const User = mongoose.model("User",UserSchema);
