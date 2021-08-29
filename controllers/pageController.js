@@ -18,6 +18,7 @@ exports.getAboutPage = (req, res) => {
         page_name:"login"
     })
   }
+
   exports.getCoursesPage = (req, res) => {
     res.status(200).render("courses",{
         page_name:"courses"
