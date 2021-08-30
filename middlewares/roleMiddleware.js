@@ -1,7 +1,9 @@
 module.exports= (roles)=>{
     return (req,res,next)=>{
-        const userRole = req.body.role;
-        if(roles.includes(userRole)){
+        let role = req.body.role;
+      
+       
+        if(roles.includes(role)){
             next();
         }
         else{
