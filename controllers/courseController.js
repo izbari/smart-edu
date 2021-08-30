@@ -30,7 +30,7 @@ exports.getAllCourses = async (req, res) => {
       filter = {category:category._id}
     }
 
-    const courses = await Course.find(filter);
+    const courses = await Course.find(filter).sort("-createdAt");
     const categories = await Category.find();
 
     res.status(200).render('courses', {
