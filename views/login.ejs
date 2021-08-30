@@ -1,6 +1,7 @@
-<%- include("./partials/_header") %>
-<%- include("./partials/_navigation") %>
+<%- include('partials/_header'); %>
 
+<%- include('partials/_navigation'); %>
+	
 	        <div class="container">
             <div class="section-title text-center">
                 <h3 class="mt-5">LOGIN</h3>
@@ -9,7 +10,7 @@
                 <div class="col-xl-12 col-md-12 col-sm-12">
                     <div class="contact_form">
                         <div id="message"></div>
-                        <form  method="POST" action="users/login">
+                        <form method="POST" action="users/login">
                             <div class="row row-fluid">
                                 <div class="offset-1 col-lg-10 col-md-10 col-sm-10">
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Email">
@@ -29,4 +30,4 @@
         </div><!-- end container -->
 	 </div><!-- end container -->
 	
-     <%- include("./partials/_footer") %>
+     <%- include('partials/_footer'); %>
