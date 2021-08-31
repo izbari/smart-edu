@@ -9,6 +9,7 @@ exports.getIndexPage = async (req, res) => {
   const totalStudents = await User.find({role:'student'}).countDocuments();
   const totalCourses = await Course.find().countDocuments();
   res.status(200).render('index', {
+    
     page_name: 'index',
     courses,totalTeachers,totalCourses,totalStudents,
   });
