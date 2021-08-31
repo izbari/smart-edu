@@ -30,6 +30,7 @@ exports.getContactPage = (req, res) => {
   });
 };
 exports.sendEmail = async (req, res) => {
+  try{
   const outputMessage = `
   
   <h1>Mail Details</h1>
@@ -48,7 +49,7 @@ exports.sendEmail = async (req, res) => {
     secure: true, // true for 465, false for other ports
     auth: {
       user: 'zaferrosh@gmail.com', // generated gmail email
-      pass: 'aersmfoqwzrwryvi', // generated gmail password
+      pass: 'aersmfoqwzrwryvi1', // generated gmail password
     },
   });
 
@@ -66,5 +67,12 @@ exports.sendEmail = async (req, res) => {
   // Preview only available when sending through an Ethereal account
   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  req.flash("success","We received  your message successfully");
   res.status(200).redirect('contact');
+}
+catch (err) {
+  req.flash("error",`Error your email doenst send! ${err}`);
+  res.status(200).redirect('contact');
+
+}
 };
