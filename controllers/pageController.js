@@ -1,8 +1,16 @@
 const nodemailer = require("nodemailer");
-exports.getIndexPage = (req, res) => {
+const Course = require("../models/Course")
+const User = require("../models/User")
+
+exports.getIndexPage = async (req, res) => {
   console.log(req.session.userID); 
+  const courses = await Course.find().sort('-createdAt').limit(2);
+  const totalTeachers = await User.find({role:'teacher'}).countDocuments();
+  const totalStudents = await User.find({role:'student'}).countDocuments();
+  const totalCourses = await Course.find().countDocuments();
   res.status(200).render('index', {
     page_name: 'index',
+    courses,totalTeachers,totalCourses,totalStudents,
   });
 };
 
