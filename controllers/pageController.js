@@ -3,6 +3,7 @@ const Course = require("../models/Course")
 const User = require("../models/User")
 
 exports.getIndexPage = async (req, res) => {
+ try{
   console.log(req.session.userID); 
   const courses = await Course.find().sort('-createdAt').limit(2);
   const totalTeachers = await User.find({role:'teacher'}).countDocuments();
@@ -13,6 +14,10 @@ exports.getIndexPage = async (req, res) => {
     page_name: 'index',
     courses,totalTeachers,totalCourses,totalStudents,
   });
+ }
+ catch(err){
+   console.log(err.message);
+ }
 };
 
 exports.getAboutPage = (req, res) => {
